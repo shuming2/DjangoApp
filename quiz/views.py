@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Answer, User
 
 
 def quiz(request):
-    question_list = Question.objects.all()
+    question_list = Question.objects.all().order_by('id')
     context = {'question_list': question_list}
     return render(request, 'quiz.html', context)
 
@@ -22,6 +23,7 @@ def submit(request):
     return render(request, 'formResponse.html', {})
 
 
+@login_required(login_url='/admin/login/')
 def result(request):
     question_list = Question.objects.all()
     user_list = User.objects.order_by('-date')
@@ -29,6 +31,7 @@ def result(request):
     return render(request, 'result.html', context)
 
 
+@login_required(login_url='/admin/login/')
 def question(request, pk):
     q = Question.objects.get(id=pk)
     answer_list = Answer.objects.filter(question_id=pk).order_by('-user__date')
@@ -36,6 +39,7 @@ def question(request, pk):
     return render(request, 'answer.html', context)
 
 
+@login_required(login_url='/admin/login/')
 def session(request, pk):
     user = User.objects.get(session=pk)
     answer_list = Answer.objects.filter(user__session=pk)
