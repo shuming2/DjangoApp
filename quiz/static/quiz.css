@@ -1,0 +1,68 @@
+body {
+    margin:0;
+    background-color:lightgrey;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+.inputText {
+    height: 100px;
+    width: 400px;
+}
+
+.title {
+    font-size: xx-large;
+    margin:10px 10px 10px;
+    font-weight:bold;
+}
+
+.line {
+    height:1px;
+    margin:10px auto 30px;
+    padding:0;
+    overflow:hidden;
+    background-color: black;
+}
+
+
+.centeredContent {
+    width: 450px;
+    margin: 60px auto 30px;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.questionArea {
+    margin: 30px 0 0;
+    font-weight: bold;
+    color: black;
+}
+
+.answerArea {
+    margin: 10px 0 0;
+}
+
+.sessionArea {
+    margin: 0;
+    font-size: small;
+    color: grey;
+    text-align: right;
+}
+
+.inputAnswerArea {
+    color:red;
+}
+.submitButton {
+    color:red;
+}

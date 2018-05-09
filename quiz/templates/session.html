@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intelligent Quiz</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz.css' %}" />
+</head>
+<body>
+    <div class="centeredContent">
+        <div class="title">Intelligent Quiz</div>
+        <div class="line"></div>
+
+        {% if answer_list %}
+
+        <div class="sessionArea">
+            {{ user.session }} <br>
+            {{ user.date }}
+        </div>
+
+            {% for answer in answer_list %}
+                <div class="questionArea">
+                    <a href="{% url 'question' answer.question.id %}" class="questionArea">
+                        Q{{ forloop.counter }}.  {{ answer.question.question_text }}
+                    </a>
+                </div>
+                <div class="answerArea">{{ answer.answer_text }}</div>
+            {% endfor %}
+        {% else %}
+            <p>No answers are available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
