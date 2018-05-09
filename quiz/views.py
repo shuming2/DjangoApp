@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+import uuid
 
 from .models import Question, Answer, User
 
@@ -12,7 +13,7 @@ def quiz(request):
 
 def submit(request):
     question_list = Question.objects.all()
-    user = User.objects.create()
+    user = User.objects.create(session=uuid.uuid4())
 
     for q in question_list:
         input_name = 'answer'+str(q.id)
@@ -25,7 +26,7 @@ def submit(request):
 
 @login_required(login_url='/admin/login/')
 def result(request):
-    question_list = Question.objects.all()
+    question_list = Question.objects.all().order_by('id')
     user_list = User.objects.order_by('-date')
     context = {'question_list': question_list, 'user_list': user_list}
     return render(request, 'result.html', context)
@@ -42,6 +43,6 @@ def question(request, pk):
 @login_required(login_url='/admin/login/')
 def session(request, pk):
     user = User.objects.get(session=pk)
-    answer_list = Answer.objects.filter(user__session=pk)
+    answer_list = Answer.objects.filter(user__session=pk).order_by('question_id')
     context = {'answer_list': answer_list, 'user': user}
     return render(request, 'session.html', context)
