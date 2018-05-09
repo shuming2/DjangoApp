@@ -1,5 +1,6 @@
 .idea/
 quiz/migrations/
+staticfiles/
 
 
 # Byte-compiled / optimized / DLL files
